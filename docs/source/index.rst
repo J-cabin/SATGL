@@ -19,5 +19,12 @@ Welcome to SATGL's documentation!
 
    advanced_materials/index
 
+.. toctree::
+   :maxdepth: 1
+   :caption: API Reference
+   :hidden:
+   :glob:
+
+   api/dataset
 
 
