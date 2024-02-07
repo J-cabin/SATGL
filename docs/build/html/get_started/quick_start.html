@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start &mdash; SATGL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="A Pipeline of SATGL" href="../advanced_materials/index.html" />
+    <link rel="prev" title="Install" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SATGL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start-from-api">Quick Start From API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-your-data">1. Prepare your data:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choose-a-model">2. Choose a model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-training-and-evaluation-config">3. Set training and evaluation config:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-model-and-collect-the-result">4. Run the model and collect the result:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start-from-source">Quick Start From Source</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Materials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_materials/index.html">A Pipeline of SATGL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SATGL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/get_started/quick_start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h1>
+<p>For general recommendation, we choose <strong>NeuroSAT</strong> model to show how to train, valid and test it on <strong>satisfiability task</strong>
+from both <strong>API</strong> and <strong>source code</strong>.</p>
+<section id="quick-start-from-api">
+<h2>Quick Start From API<a class="headerlink" href="#quick-start-from-api" title="Permalink to this heading">¶</a></h2>
+<section id="prepare-your-data">
+<h3>1. Prepare your data:<a class="headerlink" href="#prepare-your-data" title="Permalink to this heading">¶</a></h3>
+<p>Firstly, you need to prepare and load data before running a model. To help users quickly get start, SATGL has some build-in cnf dataset
+and you can directly use it. However, if you want to use other datasets, you can read <strong>refref</strong> for more information.</p>
+<p>Then, you need to set data config for data loading. You can create a yaml file called neurosat.yaml and write the following settings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dataset config : General Recommendation</span>
+<span class="n">dataset_name</span><span class="p">:</span> <span class="n">neurosat</span>
+<span class="n">load_split_dataset</span><span class="p">:</span> <span class="kc">True</span>
+<span class="n">feature_type</span><span class="p">:</span> <span class="n">all_one</span>
+<span class="n">dataset_path</span><span class="p">:</span> <span class="o">./</span><span class="n">dataset</span><span class="o">/</span><span class="n">satisfiability</span>
+</pre></div>
+</div>
+</section>
+<section id="choose-a-model">
+<h3>2. Choose a model<a class="headerlink" href="#choose-a-model" title="Permalink to this heading">¶</a></h3>
+<p>You can choose a model from our <strong>model</strong> and set the parameter for the model. Here we choose NeuroSAT model and add
+settings into the neurosat.yaml, like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># model config</span>
+<span class="n">model_settings</span><span class="p">:</span>
+  <span class="n">model</span><span class="p">:</span> <span class="n">neurosat</span>
+  <span class="n">input_size</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">hidden_size</span><span class="p">:</span> <span class="mi">128</span>
+  <span class="n">output_size</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">loss</span><span class="p">:</span> <span class="n">binary_cross_entropy</span>
+  <span class="n">num_fc</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="n">num_round</span><span class="p">:</span> <span class="mi">32</span>
+  <span class="n">dropout_ratio</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">sigmoid</span><span class="p">:</span> <span class="kc">True</span>
+  <span class="n">pooling</span><span class="p">:</span> <span class="n">mean</span>
+</pre></div>
+</div>
+</section>
+<section id="set-training-and-evaluation-config">
+<h3>3. Set training and evaluation config:<a class="headerlink" href="#set-training-and-evaluation-config" title="Permalink to this heading">¶</a></h3>
+<p>SATGL provides multiple training and evaluation approaches. You can select the training and testing methodology for
+your model simply by configuring the settings.</p>
+<p>In this case, our goal is to train and evaluate the NeuroSAT model utilizing the training-validation-test approach. This involves
+optimizing the model parameters using the training data, selecting the optimal parameters based on validation set performance,
+and finalizing the model testing on the unseen test set.</p>
+<p>To enable this methodology and evaluate the full ranking performance over all candidate items, we can add the following
+customizations to the neurosat.yaml configuration file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train settings</span>
+<span class="n">task</span><span class="p">:</span> <span class="n">satisfiability</span>
+<span class="n">task_type</span><span class="p">:</span> <span class="n">lcg</span>
+<span class="n">task_level</span><span class="p">:</span> <span class="n">graph</span>
+
+<span class="n">scheduler_settings</span><span class="p">:</span>
+  <span class="n">scheduler</span><span class="p">:</span> <span class="n">ReduceLROnPlateau</span>
+  <span class="n">patience</span><span class="p">:</span> <span class="mi">10</span>
+  <span class="n">factor</span><span class="p">:</span> <span class="mf">0.5</span>
+  <span class="n">mode</span><span class="p">:</span> <span class="nb">min</span>
+
+<span class="n">valid_metric</span><span class="p">:</span> <span class="n">acc</span>
+<span class="n">epochs</span><span class="p">:</span> <span class="mi">100</span>
+<span class="n">lr</span><span class="p">:</span> <span class="mf">1e-4</span>
+<span class="n">weight_decay</span><span class="p">:</span> <span class="mf">1e-10</span>
+<span class="n">device</span><span class="p">:</span> <span class="n">cuda</span><span class="p">:</span><span class="mi">6</span>
+<span class="n">split_ratio</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="n">batch_size</span><span class="p">:</span> <span class="mi">64</span>
+<span class="n">save_model</span><span class="p">:</span> <span class="o">./</span><span class="n">save_model</span><span class="o">/</span><span class="n">neurosat</span><span class="o">.</span><span class="n">pt</span>
+<span class="n">scheduler</span><span class="p">:</span> <span class="n">ReduceLROnPlateau</span>
+
+
+<span class="c1">#log settings</span>
+<span class="n">log_file</span><span class="p">:</span> <span class="o">./</span><span class="n">log</span><span class="o">/</span><span class="n">neurosat</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>For more details of training and evaluation config, please refer to <strong>config</strong>.</p>
+</section>
+<section id="run-the-model-and-collect-the-result">
+<h3>4. Run the model and collect the result:<a class="headerlink" href="#run-the-model-and-collect-the-result" title="Permalink to this heading">¶</a></h3>
+<p>You can create a new python file (e.g., neurosat_test.py), and write the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">dgl</span>
+<span class="kn">from</span> <span class="nn">satgl.config.configurator</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">satgl.trainer.trainer</span> <span class="kn">import</span> <span class="n">AbstractTrainer</span>
+<span class="kn">from</span> <span class="nn">satgl.utils.utils</span> <span class="kn">import</span> <span class="n">seed_everything</span>
+<span class="kn">from</span> <span class="nn">satgl.data.utils</span> <span class="kn">import</span> <span class="n">get_dataset</span><span class="p">,</span> <span class="n">get_dataloader</span>
+<span class="kn">from</span> <span class="nn">satgl.model.sat_model.neurosat</span> <span class="kn">import</span> <span class="n">NeuroSAT</span>
+<span class="kn">from</span> <span class="nn">satgl.metric.metric</span> <span class="kn">import</span> <span class="n">eval_accuracy</span>
+<span class="kn">from</span> <span class="nn">satgl.trainer.trainer</span> <span class="kn">import</span> <span class="n">TaskTrainer</span>
+<span class="kn">from</span> <span class="nn">satgl.data.utils</span> <span class="kn">import</span> <span class="n">get_data</span>
+<span class="kn">from</span> <span class="nn">satgl.model.utils</span> <span class="kn">import</span> <span class="n">get_model</span>
+<span class="kn">from</span> <span class="nn">satgl.data.wrapper</span> <span class="kn">import</span> <span class="n">SATDataWrapper</span>
+
+<span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">additional_args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="n">seed_everything</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">reproducibility</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="n">config_file_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;./satgl/yaml/neurosat.yaml&#39;</span><span class="p">],</span> <span class="n">parameter_dict</span><span class="o">=</span><span class="n">additional_args</span><span class="p">)</span>
+<span class="n">sat_data</span> <span class="o">=</span> <span class="n">SATDataWrapper</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="n">Trainer</span> <span class="o">=</span> <span class="n">TaskTrainer</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+<span class="n">Trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">sat_data</span><span class="o">.</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">valid_dataloader</span><span class="p">,</span> <span class="n">test_loader</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">test_dataloader</span><span class="p">)</span>
+
+<span class="n">run_experiment</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then run the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">neurosat_test</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>And you will obtain the output like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">processing</span> <span class="n">train</span> <span class="n">dataset</span> <span class="o">...</span>
+<span class="n">processing</span> <span class="n">valid</span> <span class="n">dataset</span> <span class="o">...</span>
+<span class="n">processing</span> <span class="n">test</span> <span class="n">dataset</span> <span class="o">...</span>
+<span class="n">epoch</span> <span class="p">[</span><span class="mi">0</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.470000</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">1600.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.693869</span>
+<span class="n">valid</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.500000</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">200.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.692978</span>
+<span class="n">epoch</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.521875</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">1600.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.693096</span>
+<span class="n">valid</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.500000</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">200.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.693015</span>
+<span class="n">epoch</span> <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.497500</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">1600.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.693087</span>
+<span class="n">valid</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.500000</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">200.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.692935</span>
+<span class="n">epoch</span> <span class="p">[</span><span class="mi">3</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.496875</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">1600.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.693105</span>
+<span class="n">valid</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.515000</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">200.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.692951</span>
+<span class="n">epoch</span> <span class="p">[</span><span class="mi">4</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.492500</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">1600.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.693318</span>
+<span class="n">valid</span> <span class="o">|</span> <span class="n">acc</span> <span class="p">:</span> <span class="mf">0.500000</span> <span class="o">|</span> <span class="n">data_size</span> <span class="p">:</span> <span class="mf">200.000000</span> <span class="o">|</span> <span class="n">loss</span> <span class="p">:</span> <span class="mf">0.692879</span>
+</pre></div>
+</div>
+<p>The above is the whole process of running a model in SATGL, and you can read other docs for depth usage.</p>
+</section>
+</section>
+<section id="quick-start-from-source">
+<h2>Quick Start From Source<a class="headerlink" href="#quick-start-from-source" title="Permalink to this heading">¶</a></h2>
+<p>In addition to the API, you can also directly execute SATGL’s source code. The overall process resembles that of the API quick start guide.</p>
+<p>To begin, you can create a YAML configuration file named neurosat.yaml. Within this file, specify all model and evaluation parameters as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># neurosat.yaml</span>
+<span class="n">dataset_name</span><span class="p">:</span> <span class="n">neurosat</span>
+<span class="n">load_split_dataset</span><span class="p">:</span> <span class="kc">True</span>
+<span class="n">feature_type</span><span class="p">:</span> <span class="n">all_one</span>
+<span class="n">task</span><span class="p">:</span> <span class="n">satisfiability</span>
+<span class="n">task_type</span><span class="p">:</span> <span class="n">lcg</span>
+<span class="n">task_level</span><span class="p">:</span> <span class="n">graph</span>
+<span class="n">dataset_path</span><span class="p">:</span> <span class="o">./</span><span class="n">dataset</span><span class="o">/</span><span class="n">satisfiability</span>
+
+<span class="n">model_settings</span><span class="p">:</span>
+  <span class="n">model</span><span class="p">:</span> <span class="n">neurosat</span>
+  <span class="n">input_size</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">hidden_size</span><span class="p">:</span> <span class="mi">128</span>
+  <span class="n">output_size</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">loss</span><span class="p">:</span> <span class="n">binary_cross_entropy</span>
+  <span class="n">num_fc</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="n">num_round</span><span class="p">:</span> <span class="mi">32</span>
+  <span class="n">dropout_ratio</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">sigmoid</span><span class="p">:</span> <span class="kc">True</span>
+  <span class="n">pooling</span><span class="p">:</span> <span class="n">mean</span>
+
+<span class="n">scheduler_settings</span><span class="p">:</span>
+  <span class="n">scheduler</span><span class="p">:</span> <span class="n">ReduceLROnPlateau</span>
+  <span class="n">patience</span><span class="p">:</span> <span class="mi">10</span>
+  <span class="n">factor</span><span class="p">:</span> <span class="mf">0.5</span>
+  <span class="n">mode</span><span class="p">:</span> <span class="nb">min</span>
+
+<span class="c1"># train settings</span>
+<span class="n">valid_metric</span><span class="p">:</span> <span class="n">acc</span>
+<span class="n">epochs</span><span class="p">:</span> <span class="mi">100</span>
+<span class="n">lr</span><span class="p">:</span> <span class="mf">1e-4</span>
+<span class="n">weight_decay</span><span class="p">:</span> <span class="mf">1e-10</span>
+<span class="n">device</span><span class="p">:</span> <span class="n">cuda</span><span class="p">:</span><span class="mi">6</span>
+<span class="n">split_ratio</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="n">batch_size</span><span class="p">:</span> <span class="mi">64</span>
+<span class="n">save_model</span><span class="p">:</span> <span class="o">./</span><span class="n">save_model</span><span class="o">/</span><span class="n">neurosat</span><span class="o">.</span><span class="n">pt</span>
+<span class="n">scheduler</span><span class="p">:</span> <span class="n">ReduceLROnPlateau</span>
+
+<span class="c1">#log settings</span>
+<span class="n">log_file</span><span class="p">:</span> <span class="o">./</span><span class="n">log</span><span class="o">/</span><span class="n">neurosat</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>Then run the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">neurosat_test</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>If you want to change the task, dataset_path or other hyper-parameters, you can run the following command like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">neurosat_test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">task</span> <span class="n">maxsat</span> <span class="o">--</span><span class="n">dataset_path</span> <span class="o">./</span><span class="n">dataset</span><span class="o">/</span><span class="n">maxsat</span> <span class="o">--</span><span class="n">batch_size</span> <span class="mi">2</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../advanced_materials/index.html" class="btn btn-neutral float-right" title="A Pipeline of SATGL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BUPT-GAMMA LAB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
