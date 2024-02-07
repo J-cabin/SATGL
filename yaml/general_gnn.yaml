@@ -1,0 +1,24 @@
+dataset_name: random
+dataset_path: ./dataset/random_10-40_1000
+label_path: ./dataset/label/random_10-40_1000.csv
+task_type: graph
+load_field: ["label"]
+graph_type: lcg
+
+model_settings:
+  input_size: 3
+  hidden_size: 128
+  output_size: 1
+  dropout_ratio: 0.3
+  num_layers: 3
+  loss: cross_entropy
+  sigmoid: True
+  pooling: mean
+  num_fc: 3
+  num_layers: 2
+  
+# train settings
+epochs: 1000
+lr: 0.00002
+device: 7
+

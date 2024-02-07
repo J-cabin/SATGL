@@ -1,0 +1,23 @@
+dataset_name: test
+dataset_path: ./dataset/test
+label_path: ./dataset/label/test.csv
+task_level: node
+load_field: ["label"]
+
+
+model_settings:
+  input_size: 3
+  hidden_size: 128
+  output_size: 1
+  dropout_ratio: 0.3
+  loss: binary_cross_entropy
+  num_fc: 3
+  num_round: 26
+  dropout_ratio: 0
+
+# train settings
+epochs: 200
+lr: 0.00002
+weight_decay: 1e-10
+device: cuda:7
+

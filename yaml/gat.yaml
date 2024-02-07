@@ -1,0 +1,34 @@
+dataset_name: neurosat
+load_split_dataset: True
+feature_type: all_one
+task: satisfiability
+task_type: lcg
+task_level: graph
+dataset_path: ./dataset/satisfiability
+
+model_settings:
+  model: gat
+  num_layers: 32
+  num_heads: 8
+  hidden_size: 128
+  dropout_ratio: 0
+  loss: binary_cross_entropy
+  num_fc: 3
+  sigmoid: True
+
+scheduler_settings:
+  scheduler: ReduceLROnPlateau
+  patience: 10
+  factor: 0.5
+  mode: min
+
+# train settings
+valid_metric: acc
+epochs: 100
+lr: 0.0001
+weight_decay: 1e-10
+device: cuda:7
+batch_size: 64
+
+#log settings
+log_file: ./log/gcn.log
