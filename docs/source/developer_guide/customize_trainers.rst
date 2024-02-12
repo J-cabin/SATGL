@@ -533,3 +533,9 @@ The ``pred_fn`` method and ``label_fn`` method in ``TaskTrainer`` are  responsib
             if len(batched_label.shape) == 0:
                 batched_label = batched_label.unsqueeze(0)
             return batched_label
+
+Forth Step: Evaluate Metric
+----------------------------
+
+You can add the evaluation function in ``satgl.metric`` and then call it in your trainer.
+

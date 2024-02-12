@@ -31,7 +31,7 @@ Welcome to SATGL's documentation!
    :maxdepth: 1
    :caption: Develop Guide
 
+   developer_guide/overall
    developer_guide/customize_data
    developer_guide/customize_models
-   developer_guide/customize_task
    developer_guide/customize_trainers
