@@ -1,28 +1,28 @@
-import dgl
-import os
-import torch
-import csv
-import numpy as np
-import pandas as pd
-
-from satgl.data.cnf import (
-    parse_cnf_file,
-    build_hetero_lcg,
-    build_hetero_vcg,
-    build_homo_lcg,
-    build_homo_vcg,
-    build_homo_vig,
-    build_homo_lig,
-
-)
-from satgl.data.aig import (
-    build_aig
-)
-
-
-from tqdm import tqdm
-from torch.nn.functional import one_hot
-from dgl.data.dgl_dataset import DGLDataset
+# import dgl
+# import os
+# import torch
+# import csv
+# import numpy as np
+# import pandas as pd
+#
+# from satgl.data.cnf import (
+#     parse_cnf_file,
+#     build_hetero_lcg,
+#     build_hetero_vcg,
+#     build_homo_lcg,
+#     build_homo_vcg,
+#     build_homo_vig,
+#     build_homo_lig,
+#
+# )
+# from satgl.data.aig import (
+#     build_aig
+# )
+#
+#
+# from tqdm import tqdm
+# from torch.nn.functional import one_hot
+# from dgl.data.dgl_dataset import DGLDataset
 
 graph_type_to_build_function = {
     "homo_lcg": build_homo_lcg,

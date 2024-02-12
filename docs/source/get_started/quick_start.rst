@@ -11,7 +11,7 @@ Quick Start From API
 >>>>>>>>>>>>>>>>>>>>>>
 
 Firstly, you need to prepare and load data before running a model. To help users quickly get start, SATGL has some build-in cnf dataset
-and you can directly use it. However, if you want to use other datasets, you can read **refref** for more information.
+and you can directly use it. However, if you want to use other datasets, you can read :ref:`data-introduction` for more information.
 
 Then, you need to set data config for data loading. You can create a yaml file called neurosat.yaml and write the following settings:
 
@@ -26,7 +26,7 @@ Then, you need to set data config for data loading. You can create a yaml file c
 2. Choose a model
 >>>>>>>>>>>>>>>>>>>>
 
-You can choose a model from our **model** and set the parameter for the model. Here we choose NeuroSAT model and add
+You can choose a model from our :ref:`model-introduction` and set the parameter for the model. Here we choose NeuroSAT model and add
 settings into the neurosat.yaml, like:
 
 .. code-block:: python
@@ -83,7 +83,7 @@ customizations to the neurosat.yaml configuration file:
     #log settings
     log_file: ./log/neurosat.log
 
-For more details of training and evaluation config, please refer to **config**.
+For more details of training and evaluation config, please refer to :ref:`config-introduction`.
 
 4. Run the model and collect the result:
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -106,12 +106,12 @@ You can create a new python file (e.g., neurosat_test.py), and write the followi
     from satgl.data.wrapper import SATDataWrapper
 
     def run_experiment(additional_args=None):
-    seed_everything(0, reproducibility=True)
-    config = Config(config_file_list=['./satgl/yaml/neurosat.yaml'], parameter_dict=additional_args)
-    sat_data = SATDataWrapper(config)
-    model = get_model(config=config)
-    Trainer = TaskTrainer(config=config, model=model)
-    Trainer.train(sat_data.train_dataloader, valid_loader=sat_data.valid_dataloader, test_loader=sat_data.test_dataloader)
+        seed_everything(0, reproducibility=True)
+        config = Config(config_file_list=['./satgl/yaml/neurosat.yaml'], parameter_dict=additional_args)
+        sat_data = SATDataWrapper(config)
+        model = get_model(config=config)
+        Trainer = TaskTrainer(config=config, model=model)
+        Trainer.train(sat_data.train_dataloader, valid_loader=sat_data.valid_dataloader, test_loader=sat_data.test_dataloader)
 
     run_experiment()
 

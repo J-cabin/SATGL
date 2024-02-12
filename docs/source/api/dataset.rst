@@ -3,11 +3,10 @@
 Dataset
 =======
 
-.. currentmodule:: satgl.data
 
 .. autosummary::
     :nosignatures:
-    :toctree: ../generated
+    :toctree: _autosummary
     :template: _templates/class.rst
 
-    satgl.data.dataset.sat_dataset
+    data.dataset.my_dataset

@@ -6,6 +6,10 @@
 Welcome to SATGL's documentation!
 =================================
 
+.. image:: _static/framework.png
+    :width: 500
+    :align: center
+
 .. toctree::
    :maxdepth: 1
    :caption: Get Started
@@ -14,17 +18,20 @@ Welcome to SATGL's documentation!
    get_started/quick_start
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Advanced Materials
+   :maxdepth: 1
+   :caption: User Guide
 
-   advanced_materials/index
+   user_guide/config_intro
+   user_guide/data_intro
+   user_guide/model_intro
+   user_guide/task_intro
+   user_guide/trainerflow
 
 .. toctree::
    :maxdepth: 1
-   :caption: API Reference
-   :hidden:
-   :glob:
+   :caption: Develop Guide
 
-   api/dataset
-
-
+   developer_guide/customize_data
+   developer_guide/customize_models
+   developer_guide/customize_task
+   developer_guide/customize_trainers
