@@ -1,3 +1,0 @@
-.. _pipeline-data:
-Data
-----------

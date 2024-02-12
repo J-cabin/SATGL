@@ -1,3 +1,0 @@
-.. _pipeline-task:
-Task
-----------
