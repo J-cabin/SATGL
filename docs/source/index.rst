@@ -29,7 +29,7 @@ Welcome to SATGL's documentation!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Develop Guide
+   :caption: Developer Guide
 
    developer_guide/overall
    developer_guide/customize_data
