@@ -36,10 +36,9 @@ your OS and CUDA version. For example:
 
 * install from source
 
-.. code:: python
-
-    git clone https://github.com/BUPT-GAMMA/SATGL
-    # If you encounter a network error, try git clone from openi as following.
-    # git clone https://git.openi.org.cn/GAMMALab/SATGL.git
-    cd SATGL
-    pip install -r requirements.txt
+..
+ git clone https://github.com/BUPT-GAMMA/SATGL
+ # If you encounter a network error, try git clone from openi as following.
+ # git clone https://git.openi.org.cn/GAMMALab/SATGL.git
+ cd SATGL
+ pip install -r requirements.txt
