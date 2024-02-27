@@ -12,10 +12,10 @@ from recommonmark.transform import AutoStructify
 
 
 project = 'SATGL'
-copyright = '2024, BUPT-GAMMA LAB'
-author = 'BUPT-GAMMA LAB'
+# copyright = '2024, BUPT-GAMMA LAB'
+# author = 'BUPT-GAMMA LAB'
 release = '0.1'
-github_doc_root = 'https://github.com/rtfd/recommonmark/tree/master/docs/'
+# github_doc_root = 'https://github.com/rtfd/recommonmark/tree/master/docs/'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -60,7 +60,7 @@ source_suffix = ['.rst', '.md']
 
 def setup(app):
     app.add_config_value('recommonmark_config', {
-        'url_resolver': lambda url: github_doc_root + url,
+        # 'url_resolver': lambda url: github_doc_root + url,
         'auto_toc_tree_section': 'Contents',
             }, True)
     app.add_transform(AutoStructify)
